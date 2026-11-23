@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Gracie</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap">
+<style>
+:root{--berry:#2d0b3a;--plum:#4a1458;--pink:#ff4fa3;--lemon:#ffe26a;--cream:#fff1f6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--berry);color:var(--cream);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#app{position:relative;height:100%;max-width:520px;margin:0 auto;background:radial-gradient(120% 80% at 50% 0%,var(--plum),var(--berry) 70%)}
+#bars{position:absolute;top:10px;left:12px;right:12px;display:flex;gap:5px;z-index:5}
+#bars i{flex:1;height:4px;border-radius:4px;background:rgba(255,241,246,.25);overflow:hidden}
+#bars i b{display:block;height:100%;width:0;background:var(--lemon)}
+#bars i.done b{width:100%}
+.slide{position:absolute;inset:0;padding:56px 28px 40px;display:none;flex-direction:column;justify-content:center;gap:18px}
+.slide.on{display:flex}
+h1{font-size:clamp(46px,16vw,76px);line-height:.95;margin:0;font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(30px,9vw,42px);line-height:1.05;margin:0;font-weight:800;letter-spacing:-.02em}
+p{font-size:19px;line-height:1.45;margin:0;max-width:34ch}
+.hint{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-size:14px;opacity:.6}
+.pink{color:var(--pink)}
+.chat{display:flex;flex-direction:column;gap:10px}
+.msg{padding:11px 15px;border-radius:20px;font-size:18px;max-width:80%;line-height:1.3}
+.me{align-self:flex-end;background:var(--pink);color:#2d0b3a;border-bottom-right-radius:6px}
+.her{align-self:flex-start;background:var(--cream);color:#2d0b3a;border-bottom-left-radius:6px}
+.stamp{border:3px solid var(--lemon);color:var(--lemon);padding:10px 16px;border-radius:10px;font-weight:800;font-size:26px;transform:rotate(-4deg);align-self:flex-start}
+.card{background:rgba(255,241,246,.08);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card dt{font-size:14px;opacity:.65}
+.card dd{margin:0 0 6px;font-size:20px;font-weight:700}
+button{font:inherit;font-weight:800;font-size:22px;background:var(--lemon);color:var(--berry);border:0;border-radius:16px;padding:18px 22px;min-height:56px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+#finale .big{display:none}
+#finale.open .big{display:block}
+#finale.open .pre{display:none}
+.age{border:2px dashed rgba(255,226,106,.6);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.age legend{font-weight:800;font-size:18px;padding:0 6px}
+.age label{display:flex;align-items:center;gap:12px;font-size:19px;min-height:48px;cursor:pointer}
+.age input{appearance:none;-webkit-appearance:none;width:28px;height:28px;margin:0;border:3px solid var(--lemon);border-radius:8px;flex:none;display:grid;place-content:center}
+.age input::after{content:"✓";color:var(--berry);font-weight:800;transform:scale(0)}
+.age input:checked{background:var(--lemon)}
+.age input:checked::after{transform:scale(1)}
+.age input:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+.age input.num{appearance:auto;-webkit-appearance:auto;width:84px;height:44px;border:3px solid var(--lemon);border-radius:12px;background:transparent;color:var(--cream);font:inherit;font-weight:700;font-size:20px;text-align:center;display:inline-block}
+.age input.num::after{content:none}
+#ageout{min-height:1.4em;font-weight:700;color:var(--lemon);font-size:17px;margin:0}
+@media (prefers-reduced-motion:no-preference){.slide.on>*{animation:in .45s ease both}.slide.on>*:nth-child(2){animation-delay:.12s}.slide.on>*:nth-child(3){animation-delay:.24s}}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="bars"></div>
+
+  <section class="slide">
+    <p id="hello"></p>
+    <h1>Gracie.<br><span class="pink">23 Nov.</span></h1>
+    <p>Today the whole world gets to celebrate you. I made you something. Tap to open.</p>
+    <div class="hint">tap the right side to continue</div>
+  </section>
+
+  <section class="slide">
+    <h2>Our chats, summarised</h2>
+    <div class="chat">
+      <div class="msg me">So when are you making me your boyfriend? 😏</div>
+      <div class="msg her">Never. Stop it 😭</div>
+      <div class="msg me">I’ll ask again tomorrow.</div>
+      <div class="msg her">I know you will 😂</div>
+    </div>
+    <p>Best comedy show I never have to pay for.</p>
+  </section>
+
+  <section class="slide">
+    <h2>Official update</h2>
+    <div class="stamp">APPLICATION DECLINED</div>
+    <dl class="card">
+      <dt>Position</dt><dd>Gracie’s boyfriend</dd>
+      <dt>Times applied</dt><dd>Too many to count</dd>
+      <dt>Backup plan</dt><dd>Stay the best friend forever</dd>
+    </dl>
+    <p>Appeal pending. Humour level: unmatched.</p>
+  </section>
+
+  <section class="slide">
+    <h2>For real now, bestie</h2>
+    <p>You’re more than a friend to me. I love you more than a twin, and I’d trade my sweet life for yours without thinking twice.</p>
+    <p>Thank you for the laughs, the late replies I forgive, and for being exactly who you are.</p>
+    <fieldset class="age" style="margin:0">
+      <legend>Age check: how old are you today?</legend>
+      <label><input type="checkbox" name="age" value="15"> 15, still a baby 😎</label>
+      <label><input type="checkbox" name="age" value="50"> 50, tired but wise 😌</label>
+      <label>Or type your real age: <input class="num" id="realage" type="number" inputmode="numeric" min="1" max="120" placeholder="??" aria-label="Your real age"></label>
+      <p id="ageout" aria-live="polite"></p>
+    </fieldset>
+    <div class="hint">then tap the right side</div>
+  </section>
+
+  <section class="slide" id="finale">
+    <div class="pre">
+      <h2>Your gift is ready</h2>
+      <p style="margin:14px 0 22px">Press the button, Gracie.</p>
+      <button id="open">Open your gift 🎁</button>
+    </div>
+    <div class="big">
+      <h1>Happy<br>Birthday,<br><span class="pink">Gracie!</span></h1>
+      <p style="margin-top:18px">May this year be kind, loud, and full of laughter. I’m always on your side.</p>
+      <p style="margin-top:12px"><b>Your bestie 💛</b></p>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script>
+const slides=[...document.querySelectorAll('.slide')],bars=document.getElementById('bars');
+let i=0;
+slides.forEach(()=>bars.insertAdjacentHTML('beforeend','<i><b></b></i>'));
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  [...bars.children].forEach((b,k)=>b.classList.toggle('done',k<=i));
+}
+document.getElementById('app').addEventListener('click',e=>{
+  if(e.target.closest('button,label,input,.age'))return;
+  const x=e.clientX-e.currentTarget.getBoundingClientRect().left;
+  show(x<e.currentTarget.clientWidth/3?i-1:i+1);
+});
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
+const ra=document.getElementById('realage');
+ra.addEventListener('input',()=>{
+  document.querySelectorAll('.age input[type=checkbox]').forEach(o=>o.checked=false);
+  const n=parseInt(ra.value,10),out=document.getElementById('ageout');
+  out.textContent=!ra.value?'':(n>=1&&n<=120)?n+' years of Gracie. Best release so far 🎉':'Nice try. Type your real age 😂';
+});
+function boom(){
+  if(typeof confetti!=='function')return;
+  const end=Date.now()+2500;
+  (function f(){
+    confetti({particleCount:6,angle:60,spread:70,origin:{x:0,y:.8},colors:['#ff4fa3','#ffe26a','#fff1f6']});
+    confetti({particleCount:6,angle:120,spread:70,origin:{x:1,y:.8},colors:['#ff4fa3','#ffe26a','#fff1f6']});
+    if(Date.now()<end)requestAnimationFrame(f);
+  })();
+}
+document.getElementById('open').addEventListener('click',()=>{
+  document.getElementById('finale').classList.add('open');
+  try{navigator.vibrate&&navigator.vibrate([200,80,200])}catch(e){}
+  boom();
+});
+const replies={'15':'15? Acting like it too 😂 Happy birthday, kiddo!','50':'50? Time to start complaining about your knees 😂','18':'Forever 18. Correct answer, and legally binding ✨'};
+document.querySelectorAll('.age input[type=checkbox]').forEach(c=>c.addEventListener('change',()=>{
+  document.getElementById('realage').value='';
+  document.querySelectorAll('.age input[type=checkbox]').forEach(o=>{if(o!==c)o.checked=false});
+  document.getElementById('ageout').textContent=c.checked?replies[c.value]:'';
+}));
+show(0);
+</script>
+</body>
+</html>
